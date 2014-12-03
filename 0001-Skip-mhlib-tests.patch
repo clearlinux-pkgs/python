@@ -1,0 +1,30 @@
+From b02585775276e0dd5af92dc89d1c0d405462a2c1 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Wed, 28 Jan 2015 16:04:21 -0500
+Subject: [PATCH] Skip mhlib tests
+
+There is a problem with mhlib using stat for its testing on btrfs
+causing tests to fail because nlink is always == 1 on btrfs.
+
+Since mhlib is deprecated anyway just skip the test.
+---
+ Lib/test/regrtest.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Lib/test/regrtest.py b/Lib/test/regrtest.py
+index b48cba5..7ded82b 100755
+--- a/Lib/test/regrtest.py
++++ b/Lib/test/regrtest.py
+@@ -700,7 +700,8 @@ def findtests(testdir=None, stdtests=STDTESTS, nottests=NOTTESTS):
+     others = set(stdtests) | nottests
+     for name in names:
+         modname, ext = os.path.splitext(name)
+-        if modname[:5] == "test_" and ext == ".py" and modname not in others:
++        if modname[:5] == "test_" and ext == ".py" and modname not in others \
++           and modname != "test_mhlib":
+             tests.append(modname)
+     return stdtests + sorted(tests)
+ 
+-- 
+1.8.3.1
+

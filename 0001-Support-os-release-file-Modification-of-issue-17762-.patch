@@ -1,0 +1,76 @@
+From 08590ee6cddb1d66f40335821450423de081cc47 Mon Sep 17 00:00:00 2001
+From: Ikey Doherty <michael.i.doherty@intel.com>
+Date: Tue, 5 May 2015 11:03:23 +0100
+Subject: [PATCH] Support os-release file - Modification of issue 17762
+ upstream
+
+This is a backport of the Python 3 patch for Python 2, which attempts
+both /usr/lib/os-release and /etc/os-release, enabling the older and newer
+variants to be found.
+
+Signed-off-by: Ikey Doherty <michael.i.doherty@intel.com>
+---
+ Lib/platform.py | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/Lib/platform.py b/Lib/platform.py
+index df2af83..58ef651 100755
+--- a/Lib/platform.py
++++ b/Lib/platform.py
+@@ -251,6 +251,9 @@ _release_version = re.compile(r'([^0-9]+)'
+                                '([\d.]+)'
+                                '[^(]*(?:\((.+)\))?')
+ 
++_os_release_fields = re.compile(r'(?!#)(?P<key>.+)=(?P<quote>[\'\"]?)(?P<value>.+)(?P=quote)$')
++_os_release_unescape = re.compile(r'\\(?P<escaped>[\'\"\\])')
++
+ # See also http://www.novell.com/coolsolutions/feature/11251.html
+ # and http://linuxmafia.com/faq/Admin/release-files.html
+ # and http://data.linux-ntfs.org/rpm/whichrpm
+@@ -288,6 +291,25 @@ def _parse_release_file(firstline):
+             id = l[1]
+     return '', version, id
+ 
++def _parse_os_release():
++    try:
++        conffileconf = '/etc/os-release'
++        conffilelib = '/usr/lib/os-release'
++        conffile = conffileconf
++        if os.path.exists(conffilelib):
++            conffile = conffilelib
++        with open(conffile) as f:
++            info = {}
++            for line in f:
++                m = re.match(_os_release_fields, line)
++                if m is not None:
++                    key = m.group('key')
++                    value = re.sub(_os_release_unescape, r'\g<escaped>', m.group('value'))
++                    info[key] = value
++            return info
++    except OSError:
++        return None
++
+ def linux_distribution(distname='', version='', id='',
+ 
+                        supported_dists=_supported_dists,
+@@ -317,6 +339,17 @@ def linux_distribution(distname='', version='', id='',
+     except os.error:
+         # Probably not a Unix system
+         return distname,version,id
++
++    os_release_info = _parse_os_release()
++    if os_release_info is not None:
++        if 'NAME' in os_release_info:
++            distname = os_release_info['NAME']
++        if 'VERSION_ID' in os_release_info:
++            version = os_release_info['VERSION_ID']
++        if 'ID' in os_release_info:
++            id = os_release_info['ID']
++        return distname, version, id
++
+     etc.sort()
+     for file in etc:
+         m = _release_filename.match(file)
+-- 
+1.9.1
+
