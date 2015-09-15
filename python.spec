@@ -135,7 +135,7 @@ mv libpython2.7.so.* %{buildroot}/%{_libdir}/avx2
 
 popd
 
-rm `find %{buildroot}/usr/lib -name "*.pyo" `
+rm -f `find %{buildroot}/usr/lib -name "*.pyo" `
 
 %check
 %define python_bin LD_LIBRARY_PATH=`pwd` ./python -Wd -3 -E -tt
