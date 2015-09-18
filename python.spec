@@ -98,9 +98,9 @@ chmod +x Python/makeopcodetargets.py
 rm -r Modules/zlib || exit 1
 
 
-%define python_configure_flags --with-threads --with-pymalloc --without-cxx-main  --with-signal-module --enable-shared --enable-ipv6=yes  ac_cv_header_bluetooth_bluetooth_h=no  ac_cv_header_bluetooth_h=no --with-system-expat  --with-system-ffi  --libdir=%{_prefix}/lib --with-computed-gotos
+%define python_configure_flags --with-threads --with-pymalloc --without-cxx-main  --with-signal-module --enable-ipv6=yes  ac_cv_header_bluetooth_bluetooth_h=no  ac_cv_header_bluetooth_h=no --with-system-expat  --with-system-ffi  --libdir=%{_prefix}/lib --with-computed-gotos
 
-%configure %python_configure_flags
+%configure %python_configure_flags --enable-shared
 
 make %{?_smp_mflags}
 
@@ -115,25 +115,11 @@ mv %{buildroot}/%{_prefix}/lib/libpython2.7.so* %{buildroot}/%{_libdir}
 # The script recommends this change if installing python to /usr/bin
 sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}%{_prefix}/lib/python2.7/cgi.py
 
-# avx2 optimized libpython2.7
-flags="%{optflags}"
-export CFLAGS="${flags/-fPIE -pie}"
-export CFLAGS="$CFLAGS -O3 -ffunction-sections -fno-semantic-interposition -fopt-info-vec  -march=haswell"
-export CXXFLAGS="$CXXFLAGS -O3 -ffunction-sections -fno-semantic-interposition -fopt-info-vec  -march=haswell"
-export AR=gcc-ar
-export RANLIB=gcc-ranlib
-export PYTHON_FOR_BUILD="../python"
-mkdir build-avx/
-pushd build-avx/
-../configure %python_configure_flags
-
-make RUNSHARED="" PYTHON_FOR_BUILD="/usr/bin/python" %{?_smp_mflags} libpython2.7.so
-buildroot_avx=`mktemp -d`
-#make DESTDIR=$buildroot_avx install
-mkdir -p %{buildroot}/%{_libdir}/avx2
-mv libpython2.7.so.* %{buildroot}/%{_libdir}/avx2
-
-popd
+# Build with PGO for perf improvement
+make clean
+%configure %python_configure_flags
+make profile-opt %{?_smp_mflags}
+%make_install
 
 rm -f `find %{buildroot}/usr/lib -name "*.pyo" `
 
@@ -153,7 +139,6 @@ rm -f `find %{buildroot}/usr/lib -name "*.pyo" `
 
 %files lib
 %{_libdir}/libpython2.7.so.1.0
-%{_libdir}/avx2/libpython2.7.so.1.0
 
 %files core
 %{_bindir}/2to3
