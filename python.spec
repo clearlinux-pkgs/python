@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.10
-Release:        40
+Release:        41
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -30,6 +30,9 @@ BuildRequires:  autoconf
 BuildRequires:  procps-ng-bin
 BuildRequires:  netbase
 Requires: clr-python-timestamp
+
+
+%define python_configure_flags --with-threads --with-pymalloc --without-cxx-main  --with-signal-module --enable-ipv6=yes  ac_cv_header_bluetooth_bluetooth_h=no  ac_cv_header_bluetooth_h=no --with-system-expat  --with-system-ffi  --libdir=%{_prefix}/lib --with-computed-gotos
 
 %description
 The Python Programming Language.
@@ -98,7 +101,6 @@ chmod +x Python/makeopcodetargets.py
 rm -r Modules/zlib || exit 1
 
 
-%define python_configure_flags --with-threads --with-pymalloc --without-cxx-main  --with-signal-module --enable-ipv6=yes  ac_cv_header_bluetooth_bluetooth_h=no  ac_cv_header_bluetooth_h=no --with-system-expat  --with-system-ffi  --libdir=%{_prefix}/lib --with-computed-gotos
 
 %configure %python_configure_flags --enable-shared
 
