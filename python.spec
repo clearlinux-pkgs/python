@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.10
-Release:        41
+Release:        42
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -113,6 +113,8 @@ cp %{SOURCE1} %{buildroot}/usr/lib/python2.7/
 # Basic, non-multilib lib64 support
 mkdir -p %{buildroot}/%{_libdir}
 mv %{buildroot}/%{_prefix}/lib/libpython2.7.so* %{buildroot}/%{_libdir}
+mkdir -p %{buildroot}/stash
+cp -r %{buildroot}/%{_prefix}/lib %{buildroot}/stash
 
 # The script recommends this change if installing python to /usr/bin
 sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}%{_prefix}/lib/python2.7/cgi.py
@@ -126,6 +128,10 @@ make profile-opt %{?_smp_mflags}
 sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}%{_prefix}/lib/python2.7/cgi.py
 
 rm -f `find %{buildroot}/usr/lib -name "*.pyo" `
+
+mv %{buildroot}/stash/lib/python2.7/_sysconfigdata.py* %{buildroot}/%{_prefix}/lib/python2.7/
+mv %{buildroot}/stash/lib/python2.7/config/* %{buildroot}/%{_prefix}/lib/python2.7/config/
+rm -rf %{buildroot}/stash
 
 %check
 %define python_bin LD_LIBRARY_PATH=`pwd` ./python -Wd -3 -E -tt
