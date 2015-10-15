@@ -125,7 +125,7 @@ sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}%{_prefix}/li
 #make profile-opt %{?_smp_mflags}
 #%make_install
 
-#sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}%{_prefix}/lib/python2.7/cgi.py
+sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}%{_prefix}/lib/python2.7/cgi.py
 
 rm -f `find %{buildroot}/usr/lib -name "*.pyo" `
 
