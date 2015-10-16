@@ -120,10 +120,10 @@ cp -r %{buildroot}/%{_prefix}/lib %{buildroot}/stash
 sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}%{_prefix}/lib/python2.7/cgi.py
 
 # Build with PGO for perf improvement
-#make clean
-#%configure %python_configure_flags
-#make profile-opt %{?_smp_mflags}
-#%make_install
+make clean
+%configure %python_configure_flags
+make profile-opt %{?_smp_mflags}
+%make_install
 
 sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}%{_prefix}/lib/python2.7/cgi.py
 
