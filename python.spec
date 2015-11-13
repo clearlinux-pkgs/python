@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.10
-Release:        47
+Release:        48
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -108,6 +108,14 @@ make %{?_smp_mflags}
 
 %install
 %make_install
+
+flags="%{optflags}"
+# Python fails to compile with PIE
+export CFLAGS="${flags/-fPIE -pie}"
+export CFLAGS="$CFLAGS -O3 -ffunction-sections -fno-semantic-interposition -fopt-info-vec"
+export CXXFLAGS="$CXXFLAGS -O3 -ffunction-sections -fno-semantic-interposition -fopt-info-vec"
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
 
 cp %{SOURCE1} %{buildroot}/usr/lib/python2.7/
 # Basic, non-multilib lib64 support
