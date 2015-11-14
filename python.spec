@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.10
-Release:        49
+Release:        50
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -11,6 +11,11 @@ Source2:	python.gcov
 Patch1:         0001-Skip-mhlib-tests.patch
 Patch2:         0001-Support-os-release-file-Modification-of-issue-17762-.patch
 Patch3:         cgoto_py2710_hg_final.patch
+Patch4:		libffi-shared.diff
+Patch5:		link-opt.diff
+Patch6:		link-whole-archive.diff
+Patch7:		lto-link-flags.diff
+
 BuildRequires:  bzip2
 BuildRequires:  db-dev
 BuildRequires:  grep
@@ -83,6 +88,10 @@ The Python Programming Language.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
 
 %build
 flags="%{optflags}"
@@ -112,7 +121,7 @@ make %{?_smp_mflags}
 flags="%{optflags}"
 # Python fails to compile with PIE
 export CFLAGS="${flags/-fPIE -pie}"
-export CFLAGS="$CFLAGS -O3 -ffunction-sections -fno-semantic-interposition -fopt-info-vec -fomit-frame-pointer"
+export CFLAGS="$CFLAGS -O3 -ffunction-sections -fno-semantic-interposition -fopt-info-vec -fomit-frame-pointer -flto"
 export CXXFLAGS="$CXXFLAGS -O3 -ffunction-sections -fno-semantic-interposition -fopt-info-vec -fomit-frame-pointer"
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
