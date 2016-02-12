@@ -1,20 +1,19 @@
 Name:           python
-Version:        2.7.10
+Version:        2.7.11
 Release:        51
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
 Group:          devel/python
-Source0:        http://www.python.org/ftp/python/2.7.10/Python-2.7.10.tar.xz
+Source0:        http://www.python.org/ftp/python/2.7.11/Python-2.7.11.tar.xz
 Source1:        argparse.egg-info
 Source2:	python.gcov
 Patch1:         0001-Skip-mhlib-tests.patch
 Patch2:         0001-Support-os-release-file-Modification-of-issue-17762-.patch
-Patch3:         cgoto_py2710_hg_final.patch
-Patch4:		libffi-shared.diff
-Patch5:		link-opt.diff
-Patch6:		link-whole-archive.diff
-Patch7:		lto-link-flags.diff
+Patch3:		libffi-shared.diff
+Patch4:		link-opt.diff
+Patch5:		link-whole-archive.diff
+Patch6:		lto-link-flags.diff
 
 BuildRequires:  bzip2
 BuildRequires:  db-dev
@@ -91,7 +90,6 @@ The Python Programming Language.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
 
 %build
 flags="%{optflags}"
@@ -111,7 +109,7 @@ rm -r Modules/zlib || exit 1
 
 
 
-%configure %python_configure_flags --enable-shared
+%configure %python_configure_flags --enable-shared --enable-unicode=ucs4
 
 make %{?_smp_mflags}
 
