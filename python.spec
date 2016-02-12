@@ -107,9 +107,7 @@ chmod +x Python/makeopcodetargets.py
 # use our own, faster, zlib
 rm -r Modules/zlib || exit 1
 
-
-
-%configure %python_configure_flags --enable-shared --enable-unicode=ucs4
+%configure %python_configure_flags --enable-shared
 
 make %{?_smp_mflags}
 
