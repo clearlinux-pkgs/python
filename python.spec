@@ -14,6 +14,7 @@ Patch3:		libffi-shared.diff
 Patch4:		link-opt.diff
 Patch5:		link-whole-archive.diff
 Patch6:		lto-link-flags.diff
+Patch7:     0001-Add-pybench-to-the-PROFILE_TASK-rule.patch
 
 BuildRequires:  bzip2
 BuildRequires:  db-dev
@@ -90,6 +91,7 @@ The Python Programming Language.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 flags="%{optflags}"
