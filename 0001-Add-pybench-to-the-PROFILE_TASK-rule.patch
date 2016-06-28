@@ -19,7 +19,7 @@ index ee73edd..82d3173 100644
 @@ -210,6 +210,7 @@ TCLTK_LIBS=	@TCLTK_LIBS@
  
  # The task to run while instrument when building the profile-opt target
- PROFILE_TASK=-m test.regrtest --pgo
+ PROFILE_TASK=-m test.regrtest --pgo -x test_asyncore test_gdb test_multiprocessing test_subprocess
 +PROFILE_TASK_PYBENCH= $(srcdir)/Tools/pybench/pybench.py -n 2 --with-gc --with-syscheck
  
  # === Definitions added by makesetup ===

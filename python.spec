@@ -1,11 +1,11 @@
 Name:           python
-Version:        2.7.11
+Version:        2.7.12
 Release:        56
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
 Group:          devel/python
-Source0:        http://www.python.org/ftp/python/2.7.11/Python-2.7.11.tar.xz
+Source0:        http://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xz
 Source1:        argparse.egg-info
 Source2:	python.gcov
 Patch1:         0001-Skip-mhlib-tests.patch
