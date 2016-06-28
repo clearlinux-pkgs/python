@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.12
-Release:        57
+Release:        58
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -37,7 +37,7 @@ BuildRequires:  netbase
 Requires: clr-python-timestamp
 
 
-%define python_configure_flags --with-threads --with-pymalloc --without-cxx-main  --with-signal-module --enable-ipv6=yes  ac_cv_header_bluetooth_bluetooth_h=no  ac_cv_header_bluetooth_h=no --with-system-expat  --with-system-ffi  --libdir=%{_prefix}/lib --with-computed-gotos
+%define python_configure_flags --with-threads --with-pymalloc --without-cxx-main  --with-signal-module --enable-ipv6=yes  ac_cv_header_bluetooth_bluetooth_h=no  ac_cv_header_bluetooth_h=no --with-system-expat  --with-system-ffi  --libdir=%{_prefix}/lib --with-computed-gotos --with-lto
 
 %description
 The Python Programming Language.
