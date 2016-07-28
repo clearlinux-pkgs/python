@@ -34,6 +34,8 @@ BuildRequires:  pkgconfig(zlib)
 BuildRequires:  autoconf
 BuildRequires:  procps-ng-bin
 BuildRequires:  netbase
+BuildRequires:  tk-dev
+BuildRequires:  tcl-dev
 Requires: clr-python-timestamp
 
 
