@@ -36,7 +36,7 @@ BuildRequires:  procps-ng-bin
 BuildRequires:  netbase
 BuildRequires:  tk-dev
 BuildRequires:  tcl-dev
-kBuildRequires:  pkgconfig(x11)
+BuildRequires:  pkgconfig(x11)
 Requires: clr-python-timestamp
 
 
