@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.12
-Release:        60
+Release:        61
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -36,6 +36,7 @@ BuildRequires:  procps-ng-bin
 BuildRequires:  netbase
 BuildRequires:  tk-dev
 BuildRequires:  tcl-dev
+kBuildRequires:  pkgconfig(x11)
 Requires: clr-python-timestamp
 
 
