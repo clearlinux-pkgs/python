@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.12
-Release:        65
+Release:        66
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -15,6 +15,7 @@ Patch4:		link-opt.diff
 Patch5:		link-whole-archive.diff
 Patch6:		lto-link-flags.diff
 Patch7:     0001-Add-pybench-to-the-PROFILE_TASK-rule.patch
+Patch8:		avx2-distutils.patch
 
 BuildRequires:  bzip2
 BuildRequires:  db-dev

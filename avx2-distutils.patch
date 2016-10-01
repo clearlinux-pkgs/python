@@ -1,0 +1,27 @@
+--- Python-2.7.12/Lib/distutils/unixccompiler.py.org	2016-10-01 23:22:22.896883982 +0000
++++ Python-2.7.12/Lib/distutils/unixccompiler.py	2016-10-01 23:24:56.072048595 +0000
+@@ -120,6 +120,8 @@
+         try:
+             self.spawn(compiler_so + cc_args + [src, '-o', obj] +
+                        extra_postargs)
++            self.spawn(self.compiler_so + cc_args + [' -mavx2 ', ' -O3 '] + [src, '-o', obj + ".avx2"] +
++                       extra_postargs)                      
+         except DistutilsExecError, msg:
+             raise CompileError, msg
+ 
+@@ -198,6 +200,15 @@
+                     linker = _osx_support.compiler_fixup(linker, ld_args)
+ 
+                 self.spawn(linker + ld_args)
++                ld_args = ([obj + ".avx2" for obj in objects] + self.objects +
++                       lib_opts + ['-o', output_filename + ".avx2"])
++                if debug:
++                    ld_args[:0] = ['-g']
++                if extra_preargs:
++                    ld_args[:0] = extra_preargs
++                if extra_postargs:
++                    ld_args.extend(extra_postargs)
++                self.spawn(linker + ld_args)
+             except DistutilsExecError, msg:
+                 raise LinkError, msg
+         else:
