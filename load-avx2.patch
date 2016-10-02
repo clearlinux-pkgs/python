@@ -1,0 +1,28 @@
+--- python/Python/dynload_shlib.c~	2016-06-25 21:49:32.000000000 +0000
++++ python/Python/dynload_shlib.c	2016-10-01 23:49:45.239150408 +0000
+@@ -73,6 +73,7 @@
+     void *handle;
+     char funcname[258];
+     char pathbuf[260];
++    char *pathname2;
+     int dlopenflags=0;
+ 
+     if (strchr(pathname, '/') == NULL) {
+@@ -127,8 +128,15 @@
+     pathname = pathbuf;
+ #endif
+ 
+-    handle = dlopen(pathname, dlopenflags);
+-
++    pathname2 = malloc(strlen(pathname) + strlen(".avx2") + 1);
++    sprintf(pathname2, "%s%s", pathname, ".avx2");
++    
++    if (access(pathname2, R_OK) == 0 && __builtin_cpu_supports("avx2"))
++        handle = dlopen(pathname2, dlopenflags);
++    else
++        handle = dlopen(pathname, dlopenflags);
++    free(pathname2);
++    
+     if (handle == NULL) {
+         const char *error = dlerror();
+         if (error == NULL)
