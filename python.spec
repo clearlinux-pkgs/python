@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.12
-Release:        72
+Release:        73
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -17,6 +17,7 @@ Patch6:		lto-link-flags.diff
 Patch7:     0001-Add-pybench-to-the-PROFILE_TASK-rule.patch
 Patch8:		avx2-distutils.patch
 Patch9:		load-avx2.patch
+Patch10:	buildhack.patch
 
 BuildRequires:  bzip2
 BuildRequires:  db-dev
@@ -110,6 +111,7 @@ The Python Programming Language.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch10 -p1
 
 %build
 flags="%{optflags}"
