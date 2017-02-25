@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.12
-Release:        71
+Release:        72
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -89,6 +89,15 @@ Group:          devel/python
 
 %description doc
 The Python Programming Language.
+
+%package tcl
+License:        Python-2.0
+Summary:        The Python Programming Language
+Group:          devel/python
+
+%description tcl
+The Python Programming Language.
+
 
 %prep
 %setup -q -n Python-%{version}
@@ -187,6 +196,15 @@ rm -rf %{buildroot}/stash
 %{_bindir}/smtpd.py
 %{_includedir}/python2.7/pyconfig.h
 %{_prefix}/lib/python2.7/*
+%exclude /usr/lib/python2.7/test/test_tcl.py
+%exclude /usr/lib/python2.7/test/test_tcl.pyc
+%exclude /usr/lib/python2.7/lib-dynload/_tkinter.so
+%exclude /usr/lib/python2.7/lib-dynload/_tkinter.so.avx2
+%exclude /usr/lib/python2.7/lib-tk
+%exclude /usr/lib/python2.7/test/test_tk.py
+%exclude /usr/lib/python2.7/test/test_tk.pyc
+
+
 
 %files dev
 %{_includedir}/python2.7/*.h
@@ -201,3 +219,12 @@ rm -rf %{buildroot}/stash
 %{_mandir}/man1/python.1
 %{_mandir}/man1/python2.1
 
+
+%files tcl
+/usr/lib/python2.7/test/test_tcl.py
+/usr/lib/python2.7/test/test_tcl.pyc
+/usr/lib/python2.7/lib-dynload/_tkinter.so
+/usr/lib/python2.7/lib-dynload/_tkinter.so.avx2
+/usr/lib/python2.7/lib-tk
+/usr/lib/python2.7/test/test_tk.py
+/usr/lib/python2.7/test/test_tk.pyc
