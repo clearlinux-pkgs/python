@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.12
-Release:        73
+Release:        74
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -75,9 +75,9 @@ Summary:        The Python Programming Language
 Group:          devel
 Requires:       python-lib
 Requires:       python-core
-Requires:	py
-Requires:	pytest
-Requires:	python-subunit
+#Requires:	py
+#Requires:	pytest
+#Requires:	python-subunit
 
 
 %description dev
