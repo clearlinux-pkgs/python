@@ -1,10 +1,12 @@
 --- Python-2.7.12/Lib/distutils/unixccompiler.py.org	2016-10-01 23:22:22.896883982 +0000
 +++ Python-2.7.12/Lib/distutils/unixccompiler.py	2016-10-01 23:24:56.072048595 +0000
-@@ -120,6 +120,8 @@
+@@ -120,6 +120,10 @@
          try:
              self.spawn(compiler_so + cc_args + [src, '-o', obj] +
                         extra_postargs)
 +            self.spawn(compiler_so + cc_args+ ["-march=haswell", "-O3"] + [src, '-o', obj + ".avx2"] +
++                       extra_postargs)                      
++            self.spawn(compiler_so + cc_args+ ["-march=skylake-avx512", "-O3"] + [src, '-o', obj + ".avx512"] +
 +                       extra_postargs)                      
          except DistutilsExecError, msg:
              raise CompileError, msg
