@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.12
-Release:        80
+Release:        81
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -10,10 +10,10 @@ Source1:        argparse.egg-info
 Source2:	python.gcov
 Patch1:         0001-Skip-mhlib-tests.patch
 Patch2:         0001-Support-os-release-file-Modification-of-issue-17762-.patch
-Patch3:		libffi-shared.diff
-Patch4:		link-opt.diff
-Patch5:		link-whole-archive.diff
-Patch6:		lto-link-flags.diff
+Patch3:		libffi-shared.patch
+Patch4:		link-opt.patch
+Patch5:		link-whole-archive.patch
+Patch6:		lto-link-flags.patch
 Patch7:     0001-Add-pybench-to-the-PROFILE_TASK-rule.patch
 Patch8:		avx2-distutils.patch
 Patch9:		load-avx2.patch
