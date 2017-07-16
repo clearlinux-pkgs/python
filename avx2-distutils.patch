@@ -36,3 +36,14 @@
              except DistutilsExecError, msg:
                  raise LinkError, msg
          else:
+--- Python-2.7.12/Makefile.pre.in~	2016-06-25 21:49:31.000000000 +0000
++++ Python-2.7.12/Makefile.pre.in	2017-07-16 06:26:18.237780631 +0000
+@@ -534,6 +534,8 @@
+ # This is shared by the math and cmath modules
+ Modules/_math.o: Modules/_math.c Modules/_math.h
+ 	$(CC) -c $(CCSHARED) $(PY_CFLAGS) -o $@ $<
++	$(CC) -c $(CCSHARED) $(PY_CFLAGS) -march=haswell -o $@.avx2 $<
++
+ 
+ # Build the shared modules
+ # Under GNU make, MAKEFLAGS are sorted and normalized; the 's' for
