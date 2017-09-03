@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.12
-Release:        86
+Release:        87
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -163,7 +163,8 @@ make profile-opt %{?_smp_mflags}
 sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}%{_prefix}/lib/python2.7/cgi.py
 
 rm -f `find %{buildroot}/usr/lib -name "*.pyo" `
-
+chmod a+x `find %{buildroot}/usr/lib -name "*.so.avx2" `
+chmod a+x `find %{buildroot}/usr/lib -name "*.so.avx512" `
 mv %{buildroot}/stash/lib/python2.7/_sysconfigdata.py* %{buildroot}/%{_prefix}/lib/python2.7/
 mv %{buildroot}/stash/lib/python2.7/config/* %{buildroot}/%{_prefix}/lib/python2.7/config/
 rm -rf %{buildroot}/stash
