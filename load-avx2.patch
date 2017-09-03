@@ -4,11 +4,11 @@
      void *handle;
      char funcname[258];
      char pathbuf[260];
-+    char *pathname2;
++    char *pathname2, *pathname3;
      int dlopenflags=0;
  
      if (strchr(pathname, '/') == NULL) {
-@@ -127,8 +128,15 @@
+@@ -127,8 +128,20 @@
      pathname = pathbuf;
  #endif
  
@@ -16,12 +16,17 @@
 -
 +    pathname2 = malloc(strlen(pathname) + strlen(".avx2") + 1);
 +    sprintf(pathname2, "%s%s", pathname, ".avx2");
++    pathname3 = malloc(strlen(pathname) + strlen(".avx512") + 1);
++    sprintf(pathname3, "%s%s", pathname, ".avx512");
 +    
-+    if (access(pathname2, R_OK) == 0 && __builtin_cpu_supports("avx2"))
++    if (access(pathname3, R_OK) == 0 && __builtin_cpu_supports("avx512cd"))
++        handle = dlopen(pathname3, dlopenflags);
++    else if (access(pathname2, R_OK) == 0 && __builtin_cpu_supports("avx2"))
 +        handle = dlopen(pathname2, dlopenflags);
 +    else
 +        handle = dlopen(pathname, dlopenflags);
 +    free(pathname2);
++    free(pathname3);
 +    
      if (handle == NULL) {
          const char *error = dlerror();
