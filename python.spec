@@ -19,6 +19,9 @@ Patch8:		avx2-distutils.patch
 Patch9:		load-avx2.patch
 Patch10:	buildhack.patch
 
+# CVE patches
+Patch100:	cve-2014-4616.nopatch
+
 BuildRequires:  bzip2
 BuildRequires:  db-dev
 BuildRequires:  grep
