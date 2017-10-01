@@ -48,7 +48,7 @@ Requires: openblas
 Requires: libgfortran-avx
 
 
-%define python_configure_flags --with-threads --with-pymalloc --without-cxx-main  --with-signal-module --enable-ipv6=yes  ac_cv_header_bluetooth_bluetooth_h=no  ac_cv_header_bluetooth_h=no --with-system-expat  --with-system-ffi  --libdir=%{_prefix}/lib --with-computed-gotos --with-lto
+%define python_configure_flags --with-threads --with-pymalloc --without-cxx-main  --with-signal-module --enable-ipv6=yes  ac_cv_header_bluetooth_bluetooth_h=no  ac_cv_header_bluetooth_h=no --with-system-expat  --with-system-ffi  --libdir=/usr/lib --with-computed-gotos --with-lto
 
 %description
 The Python Programming Language.
@@ -149,13 +149,13 @@ export RANLIB=gcc-ranlib
 
 cp %{SOURCE1} %{buildroot}/usr/lib/python2.7/
 # Basic, non-multilib lib64 support
-mkdir -p %{buildroot}/%{_libdir}
-mv %{buildroot}/%{_prefix}/lib/libpython2.7.so* %{buildroot}/%{_libdir}
+mkdir -p %{buildroot}//usr/lib64
+mv %{buildroot}//usr/lib/libpython2.7.so* %{buildroot}//usr/lib64
 mkdir -p %{buildroot}/stash
-cp -r %{buildroot}/%{_prefix}/lib %{buildroot}/stash
+cp -r %{buildroot}//usr/lib %{buildroot}/stash
 
 # The script recommends this change if installing python to /usr/bin
-sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}%{_prefix}/lib/python2.7/cgi.py
+sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}/usr/lib/python2.7/cgi.py
 
 # Build with PGO for perf improvement
 make clean
@@ -163,13 +163,13 @@ make clean
 make profile-opt %{?_smp_mflags}
 %make_install
 
-sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}%{_prefix}/lib/python2.7/cgi.py
+sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}/usr/lib/python2.7/cgi.py
 
 rm -f `find %{buildroot}/usr/lib -name "*.pyo" `
 chmod a+x `find %{buildroot}/usr/lib -name "*.so.avx2" `
 chmod a+x `find %{buildroot}/usr/lib -name "*.so.avx512" `
-mv %{buildroot}/stash/lib/python2.7/_sysconfigdata.py* %{buildroot}/%{_prefix}/lib/python2.7/
-mv %{buildroot}/stash/lib/python2.7/config/* %{buildroot}/%{_prefix}/lib/python2.7/config/
+mv %{buildroot}/stash/lib/python2.7/_sysconfigdata.py* %{buildroot}//usr/lib/python2.7/
+mv %{buildroot}/stash/lib/python2.7/config/* %{buildroot}//usr/lib/python2.7/config/
 rm -rf %{buildroot}/stash
 
 %check
@@ -187,21 +187,21 @@ rm -rf %{buildroot}/stash
 
 
 %files lib
-%{_libdir}/libpython2.7.so.1.0
+/usr/lib64/libpython2.7.so.1.0
 
 %files core
-%{_bindir}/2to3
-%{_bindir}/idle
-%{_bindir}/pydoc
-%{_bindir}/python
-%{_bindir}/python-config
-%{_bindir}/python2
-%{_bindir}/python2-config
-%{_bindir}/python2.7
-%{_bindir}/python2.7-config
-%{_bindir}/smtpd.py
-%{_includedir}/python2.7/pyconfig.h
-%{_prefix}/lib/python2.7/*
+/usr/bin/2to3
+/usr/bin/idle
+/usr/bin/pydoc
+/usr/bin/python
+/usr/bin/python-config
+/usr/bin/python2
+/usr/bin/python2-config
+/usr/bin/python2.7
+/usr/bin/pythonn2.7-config
+/usr/bin/smtpd.py
+/usr/include/python2.7/pyconfig.h
+/usr/lib/python2.7/*
 %exclude /usr/lib/python2.7/test/test_tcl.py
 %exclude /usr/lib/python2.7/test/test_tcl.pyc
 %exclude /usr/lib/python2.7/lib-dynload/_tkinter.so
@@ -213,17 +213,17 @@ rm -rf %{buildroot}/stash
 
 
 %files dev
-%{_includedir}/python2.7/*.h
-%exclude %{_includedir}/python2.7/pyconfig.h
-%{_libdir}/libpython2.7.so
-%{_libdir}/pkgconfig/python-2.7.pc
-%{_libdir}/pkgconfig/python.pc
-%{_libdir}/pkgconfig/python2.pc
+/usr/include/python2.7/*.h
+%exclude /usr/include/python2.7/pyconfig.h
+/usr/lib64/libpython2.7.so
+/usr/lib64/pkgconfig/python-2.7.pc
+/usr/lib64/pkgconfig/python.pc
+/usr/lib64/pkgconfig/python2.pc
 
 %files doc
-%{_mandir}/man1/python2.7.1
-%{_mandir}/man1/python.1
-%{_mandir}/man1/python2.1
+/usr/share/man/man1/python2.7.1
+/usr/share/man/man1/python.1
+/usr/share/man/man1/python2.1
 
 
 %files tcl
