@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.12
-Release:        90
+Release:        91
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -206,6 +206,7 @@ rm -rf %{buildroot}/stash
 %exclude /usr/lib/python2.7/test/test_tcl.pyc
 %exclude /usr/lib/python2.7/lib-dynload/_tkinter.so
 %exclude /usr/lib/python2.7/lib-dynload/_tkinter.so.avx2
+%exclude /usr/lib/python2.7/lib-dynload/_tkinter.so.avx512
 %exclude /usr/lib/python2.7/lib-tk
 %exclude /usr/lib/python2.7/test/test_tk.py
 %exclude /usr/lib/python2.7/test/test_tk.pyc
@@ -230,7 +231,7 @@ rm -rf %{buildroot}/stash
 /usr/lib/python2.7/test/test_tcl.py
 /usr/lib/python2.7/test/test_tcl.pyc
 /usr/lib/python2.7/lib-dynload/_tkinter.so
-/usr/lib/python2.7/lib-dynload/_tkinter.so.avx2
+/usr/lib/python2.7/lib-dynload/_tkinter.so.*
 /usr/lib/python2.7/lib-tk
 /usr/lib/python2.7/test/test_tk.py
 /usr/lib/python2.7/test/test_tk.pyc
