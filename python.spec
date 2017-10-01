@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.12
-Release:        93
+Release:        94
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -69,6 +69,7 @@ Group:          devel/python
 Provides:       python
 Provides:       python-modules
 Provides:       /bin/python
+Requires:	usrbinpython
 
 %description core
 The Python Programming Language.
