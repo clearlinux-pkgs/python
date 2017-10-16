@@ -7,7 +7,6 @@ Url:            http://www.python.org
 Group:          devel/python
 Source0:        http://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xz
 Source1:        argparse.egg-info
-Source2:	python.gcov
 Patch1:         0001-Skip-mhlib-tests.patch
 Patch2:         0001-Support-os-release-file-Modification-of-issue-17762-.patch
 Patch3:		libffi-shared.patch
