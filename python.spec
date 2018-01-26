@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.12
-Release:        101
+Release:        102
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -156,7 +156,7 @@ mkdir -p %{buildroot}/stash
 cp -r %{buildroot}//usr/lib %{buildroot}/stash
 
 # The script recommends this change if installing python to /usr/bin
-sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}/usr/lib/python2.7/cgi.py
+sed -i '1s@/usr/local/bin/python@/usr/bin/env python2@' %{buildroot}/usr/lib/python2.7/cgi.py
 
 # Build with PGO for perf improvement
 make clean
@@ -164,7 +164,7 @@ make clean
 make profile-opt %{?_smp_mflags}
 %make_install
 
-sed -i '1s@/usr/local/bin/python@/usr/bin/env python@' %{buildroot}/usr/lib/python2.7/cgi.py
+sed -i '1s@/usr/local/bin/python@/usr/bin/env python2@' %{buildroot}/usr/lib/python2.7/cgi.py
 
 rm -f `find %{buildroot}/usr/lib -name "*.pyo" `
 chmod a+x `find %{buildroot}/usr/lib -name "*.so.avx2" `
