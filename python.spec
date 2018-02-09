@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.12
-Release:        103
+Release:        104
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -42,6 +42,8 @@ BuildRequires:  netbase
 BuildRequires:  tk-dev
 BuildRequires:  tcl-dev
 BuildRequires:  pkgconfig(x11)
+Requires: python-core
+Requires: python-lib
 Requires: clr-python-timestamp
 Requires: openblas
 Requires: libgfortran-avx
@@ -186,6 +188,8 @@ rm -rf %{buildroot}/stash
 #%python_bin ../%python_test_args
 
 
+
+%files
 
 %files lib
 /usr/lib64/libpython2.7.so.1.0
