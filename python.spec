@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.12
-Release:        104
+Release:        105
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -48,6 +48,7 @@ Requires: clr-python-timestamp
 Requires: openblas
 Requires: libgfortran-avx
 Requires: usrbinpython
+Requires: enum34-legacypython
 
 
 %define python_configure_flags --with-threads --with-pymalloc --without-cxx-main  --with-signal-module --enable-ipv6=yes  ac_cv_header_bluetooth_bluetooth_h=no  ac_cv_header_bluetooth_h=no --with-system-expat  --with-system-ffi  --libdir=/usr/lib --with-computed-gotos --with-lto
