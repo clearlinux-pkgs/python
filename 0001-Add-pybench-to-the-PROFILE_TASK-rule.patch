@@ -27,8 +27,8 @@ index ee73edd..82d3173 100644
 @@ -450,6 +451,7 @@ build_all_generate_profile:
  run_profile_task:
  	: # FIXME: can't run for a cross build
- 	$(LLVM_PROF_FILE) ./$(BUILDPYTHON) $(PROFILE_TASK) || true
-+	$(LLVM_PROF_FILE) ./$(BUILDPYTHON) $(PROFILE_TASK_PYBENCH) || true
+ 	$(LLVM_PROF_FILE) $(RUNSHARED) ./$(BUILDPYTHON) $(PROFILE_TASK) || true
++	$(LLVM_PROF_FILE) $(RUNSHARED) ./$(BUILDPYTHON) $(PROFILE_TASK_PYBENCH) || true
  
  build_all_merge_profile:
  	$(LLVM_PROF_MERGER)

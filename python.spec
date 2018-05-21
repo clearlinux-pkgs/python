@@ -1,11 +1,11 @@
 Name:           python
-Version:        2.7.12
+Version:        2.7.15
 Release:        111
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
 Group:          devel/python
-Source0:        http://www.python.org/ftp/python/2.7.12/Python-2.7.12.tar.xz
+Source0:        http://www.python.org/ftp/python/2.7.15/Python-2.7.15.tar.xz
 Source1:        argparse.egg-info
 Patch1:         0001-Skip-mhlib-tests.patch
 Patch2:         0001-Support-os-release-file-Modification-of-issue-17762-.patch
@@ -16,7 +16,6 @@ Patch6:		lto-link-flags.patch
 Patch7:     0001-Add-pybench-to-the-PROFILE_TASK-rule.patch
 Patch8:		avx2-distutils.patch
 Patch9:		load-avx2.patch
-Patch10:	buildhack.patch
 
 # CVE patches
 Patch100:	cve-2014-4616.nopatch
@@ -119,7 +118,6 @@ The Python Programming Language.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
-%patch10 -p1
 
 %build
 flags="%{optflags}"
