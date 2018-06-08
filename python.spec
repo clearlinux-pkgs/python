@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.15
-Release:        112
+Release:        113
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -120,6 +120,10 @@ The Python Programming Language.
 %patch9 -p1
 
 %build
+
+# set the mtime of all .py files for correct swupd/pyc behavior
+/usr/bin/clr-python-timestamp .
+
 flags="%{optflags}"
 # Python fails to compile with PIE
 export CFLAGS="${flags/-fPIE -pie}"
