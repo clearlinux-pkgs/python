@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.15
-Release:        113
+Release:        114
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
