@@ -144,6 +144,8 @@ export INSTALL="install -p"
 make %{?_smp_mflags}
 
 %install
+# The script recommends this change if installing python to /usr/bin
+sed -i '1s@/usr/local/bin/python@/usr/bin/env python2@' Lib/cgi.py
 # set the mtime of all .py files immediately before installation for correct
 # swupd/pyc behavior
 /usr/bin/clr-python-timestamp .
@@ -164,21 +166,17 @@ mv %{buildroot}//usr/lib/libpython2.7.so* %{buildroot}//usr/lib64
 mkdir -p %{buildroot}/stash
 cp -r %{buildroot}//usr/lib %{buildroot}/stash
 
-# The script recommends this change if installing python to /usr/bin
-sed -i '1s@/usr/local/bin/python@/usr/bin/env python2@' %{buildroot}/usr/lib/python2.7/cgi.py
-
 # Build with PGO for perf improvement
 make clean
 # override INSTALL again, since configure is being rerun
 export INSTALL="install -p"
 %configure %python_configure_flags
 make profile-opt %{?_smp_mflags}
+sed -i '1s@/usr/local/bin/python@/usr/bin/env python2@' Lib/cgi.py
 # set the mtime of all .py files immediately before installation for correct
 # swupd/pyc behavior
 /usr/bin/clr-python-timestamp .
 %make_install
-
-sed -i '1s@/usr/local/bin/python@/usr/bin/env python2@' %{buildroot}/usr/lib/python2.7/cgi.py
 
 rm -f `find %{buildroot}/usr/lib -name "*.pyo" `
 chmod a+x `find %{buildroot}/usr/lib -name "*.so.avx2" `
