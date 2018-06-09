@@ -121,9 +121,6 @@ The Python Programming Language.
 
 %build
 
-# set the mtime of all .py files for correct swupd/pyc behavior
-/usr/bin/clr-python-timestamp .
-
 flags="%{optflags}"
 # Python fails to compile with PIE
 export CFLAGS="${flags/-fPIE -pie}"
@@ -139,11 +136,17 @@ chmod +x Python/makeopcodetargets.py
 # use our own, faster, zlib
 rm -r Modules/zlib || exit 1
 
+# ensure that clr-python-timestamp mtimes are preserved, since .py files are
+# bytecompiled afterward
+export INSTALL="install -p"
 %configure %python_configure_flags --enable-shared
 
 make %{?_smp_mflags}
 
 %install
+# set the mtime of all .py files immediately before installation for correct
+# swupd/pyc behavior
+/usr/bin/clr-python-timestamp .
 %make_install
 
 flags="%{optflags}"
@@ -166,8 +169,13 @@ sed -i '1s@/usr/local/bin/python@/usr/bin/env python2@' %{buildroot}/usr/lib/pyt
 
 # Build with PGO for perf improvement
 make clean
+# override INSTALL again, since configure is being rerun
+export INSTALL="install -p"
 %configure %python_configure_flags
 make profile-opt %{?_smp_mflags}
+# set the mtime of all .py files immediately before installation for correct
+# swupd/pyc behavior
+/usr/bin/clr-python-timestamp .
 %make_install
 
 sed -i '1s@/usr/local/bin/python@/usr/bin/env python2@' %{buildroot}/usr/lib/python2.7/cgi.py
