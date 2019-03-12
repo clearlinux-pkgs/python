@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.16
-Release:        121
+Release:        122
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -18,7 +18,7 @@ Patch8:		avx2-distutils.patch
 Patch9:		load-avx2.patch
 
 # CVE patches
-
+Patch100: CVE-2019-9636.patch
 
 BuildRequires:  bzip2
 BuildRequires:  db-dev
@@ -118,6 +118,7 @@ The Python Programming Language.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch100 -p1
 
 %build
 
