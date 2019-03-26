@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.16
-Release:        122
+Release:        123
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -16,6 +16,7 @@ Patch6:		lto-link-flags.patch
 Patch7:     0001-Add-pybench-to-the-PROFILE_TASK-rule.patch
 Patch8:		avx2-distutils.patch
 Patch9:		load-avx2.patch
+Patch10:	0001-python-Add-deprecation-notice-for-Python-2.7-in-inte.patch
 
 # CVE patches
 Patch100: CVE-2019-9636.patch
@@ -118,6 +119,7 @@ The Python Programming Language.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch10 -p1
 %patch100 -p1
 
 %build

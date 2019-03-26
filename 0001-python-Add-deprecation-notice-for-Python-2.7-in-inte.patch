@@ -1,0 +1,38 @@
+From df7810f12d5f2bc26ceb36786a9d43fdb209ac3a Mon Sep 17 00:00:00 2001
+From: Leandro Pereira <leandro.pereira@intel.com>
+Date: Tue, 26 Mar 2019 13:29:22 -0700
+Subject: [PATCH] python: Add deprecation notice for Python 2.7 in interactive
+ mode
+
+---
+ Modules/main.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/Modules/main.c b/Modules/main.c
+index a6edf82..0b0e862 100644
+--- a/Modules/main.c
++++ b/Modules/main.c
+@@ -34,6 +34,12 @@
+     "Type \"help\", \"copyright\", \"credits\" or \"license\" " \
+     "for more information."
+ 
++#define DEPRECATION_NOTICE \
++    "╭────────────────────────────────────────────────────────────────────────────╮\n"\
++    "│ Python 2.7 will not be maintained past January 1st, 2020.  Please consider │\n"\
++    "│ upgrading to Python 3. ╭───────────────────────────────────────────────────╯\n"\
++    "╰────────────────────────╯\n"
++
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+@@ -556,6 +562,7 @@ Py_Main(int argc, char **argv)
+             Py_GetVersion(), Py_GetPlatform());
+         if (!Py_NoSiteFlag)
+             fprintf(stderr, "%s\n", COPYRIGHT);
++        fprintf(stderr, "%s\n", DEPRECATION_NOTICE);
+     }
+ 
+     if (command != NULL) {
+-- 
+2.21.0
+
