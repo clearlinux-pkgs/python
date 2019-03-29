@@ -222,6 +222,7 @@ rm -rf %{buildroot}/stash
 /usr/bin/smtpd.py
 /usr/include/python2.7/pyconfig.h
 /usr/lib/python2.7/*
+%exclude /usr/lib/python2.7/distutils/command/*.exe
 %exclude /usr/lib/python2.7/test/test_tcl.py
 %exclude /usr/lib/python2.7/test/test_tcl.pyc
 %exclude /usr/lib/python2.7/lib-dynload/_tkinter.so
