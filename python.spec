@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.16
-Release:        124
+Release:        125
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -20,6 +20,7 @@ Patch10:	0001-python-Add-deprecation-notice-for-Python-2.7-in-inte.patch
 
 # CVE patches
 Patch100: CVE-2019-9636.patch
+Patch101: CVE-2019-9948.patch
 
 BuildRequires:  bzip2
 BuildRequires:  db-dev
@@ -121,6 +122,7 @@ The Python Programming Language.
 %patch9 -p1
 %patch10 -p1
 %patch100 -p1
+%patch101 -p1
 
 %build
 
