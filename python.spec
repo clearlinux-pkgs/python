@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.16
-Release:        127
+Release:        128
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -226,6 +226,7 @@ rm -rf %{buildroot}/stash
 %exclude /usr/lib/python2.7/test/test_tcl.py
 %exclude /usr/lib/python2.7/test/test_tcl.pyc
 %exclude /usr/lib/python2.7/lib-dynload/_tkinter.so
+%exclude /usr/lib/python2.7/lib-dynload/_tkinter.so.avx2
 %exclude /usr/lib/python2.7/lib-tk
 %exclude /usr/lib/python2.7/test/test_tk.py
 %exclude /usr/lib/python2.7/test/test_tk.pyc
