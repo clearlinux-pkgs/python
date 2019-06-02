@@ -21,6 +21,7 @@ Patch10:	0001-python-Add-deprecation-notice-for-Python-2.7-in-inte.patch
 # CVE patches
 Patch100: CVE-2019-9636.patch
 Patch101: CVE-2019-9948.patch
+Patch102: CVE-2019-9740.patch
 
 BuildRequires:  bzip2
 BuildRequires:  db-dev
@@ -123,6 +124,7 @@ The Python Programming Language.
 %patch10 -p1
 %patch100 -p1
 %patch101 -p1
+%patch102 -p1
 
 %build
 
