@@ -1,11 +1,11 @@
 Name:           python
-Version:        2.7.16
-Release:        134
+Version:        2.7.17
+Release:        135
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
 Group:          devel/python
-Source0:        http://www.python.org/ftp/python/2.7.16/Python-2.7.16.tar.xz
+Source0:        http://www.python.org/ftp/python/2.7.17/Python-2.7.17.tar.xz
 Source1:        argparse.egg-info
 Patch1:         0001-Skip-mhlib-tests.patch
 Patch2:         0001-Support-os-release-file-Modification-of-issue-17762-.patch
@@ -17,14 +17,6 @@ Patch7:     0001-Add-pybench-to-the-PROFILE_TASK-rule.patch
 Patch8:		avx2-distutils.patch
 Patch9:		load-avx2.patch
 Patch10:	0001-python-Add-deprecation-notice-for-Python-2.7-in-inte.patch
-
-# CVE patches
-Patch100: CVE-2019-9636.patch
-Patch101: CVE-2019-9948.patch
-Patch102: CVE-2019-9740.patch
-Patch103: CVE-2018-20852.patch
-Patch104: CVE-2019-16056.patch
-Patch105: CVE-2019-16935.patch
 
 BuildRequires:  bzip2
 BuildRequires:  db-dev
@@ -123,12 +115,6 @@ The Python Programming Language.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-%patch100 -p1
-%patch101 -p1
-%patch102 -p1
-%patch103 -p1
-%patch104 -p1
-%patch105 -p1
 
 %build
 
