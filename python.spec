@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.17
-Release:        136
+Release:        137
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -202,7 +202,7 @@ rm -rf %{buildroot}/stash
 /usr/lib64/libpython2.7.so.1.0
 
 %files core
-/usr/bin/2to3
+%exclude /usr/bin/2to3
 /usr/bin/idle
 /usr/bin/pydoc
 %exclude /usr/bin/python
