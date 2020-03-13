@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.17
-Release:        137
+Release:        138
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -43,7 +43,6 @@ Requires: python-core
 Requires: python-lib
 Requires: clr-python-timestamp
 Requires: openblas
-Requires: libgfortran-avx
 Requires: usrbinpython
 
 
