@@ -1,11 +1,11 @@
 Name:           python
-Version:        2.7.17
-Release:        138
+Version:        2.7.18
+Release:        139
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
 Group:          devel/python
-Source0:        http://www.python.org/ftp/python/2.7.17/Python-2.7.17.tar.xz
+Source0:        http://www.python.org/ftp/python/2.7.18/Python-2.7.18.tar.xz
 Source1:        argparse.egg-info
 Patch1:         0001-Skip-mhlib-tests.patch
 Patch2:         0001-Support-os-release-file-Modification-of-issue-17762-.patch
