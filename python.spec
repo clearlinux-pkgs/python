@@ -9,14 +9,14 @@ Source0:        http://www.python.org/ftp/python/2.7.18/Python-2.7.18.tar.xz
 Source1:        argparse.egg-info
 Patch1:         0001-Skip-mhlib-tests.patch
 Patch2:         0001-Support-os-release-file-Modification-of-issue-17762-.patch
-Patch3:		libffi-shared.patch
-Patch4:		link-opt.patch
-Patch5:		link-whole-archive.patch
-Patch6:		lto-link-flags.patch
-Patch7:     0001-Add-pybench-to-the-PROFILE_TASK-rule.patch
-Patch8:		avx2-distutils.patch
-Patch9:		load-avx2.patch
-Patch10:	0001-python-Add-deprecation-notice-for-Python-2.7-in-inte.patch
+Patch3:         libffi-shared.patch
+Patch4:         link-opt.patch
+Patch5:         link-whole-archive.patch
+Patch6:         lto-link-flags.patch
+Patch7:         0001-Add-pybench-to-the-PROFILE_TASK-rule.patch
+Patch8:         avx2-distutils.patch
+Patch9:         load-avx2.patch
+Patch10:        0001-python-Add-deprecation-notice-for-Python-2.7-in-inte.patch
 
 BuildRequires:  bzip2
 BuildRequires:  db-dev
@@ -66,7 +66,7 @@ Group:          devel/python
 Provides:       python
 Provides:       python-modules
 Provides:       /bin/python
-Requires:	usrbinpython
+Requires:       usrbinpython
 
 %description core
 The Python Programming Language.
@@ -77,9 +77,9 @@ Summary:        The Python Programming Language
 Group:          devel
 Requires:       python-lib
 Requires:       python-core
-#Requires:	py
-#Requires:	pytest
-#Requires:	python-subunit
+#Requires:       py
+#Requires:       pytest
+#Requires:       python-subunit
 
 
 %description dev
