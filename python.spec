@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.18
-Release:        139
+Release:        140
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -17,6 +17,7 @@ Patch7:         0001-Add-pybench-to-the-PROFILE_TASK-rule.patch
 Patch8:         avx2-distutils.patch
 Patch9:         load-avx2.patch
 Patch10:        0001-python-Add-deprecation-notice-for-Python-2.7-in-inte.patch
+Patch11:        CVE-2019-20907.patch
 
 BuildRequires:  bzip2
 BuildRequires:  db-dev
@@ -114,6 +115,7 @@ The Python Programming Language.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
+%patch11 -p1
 
 %build
 
