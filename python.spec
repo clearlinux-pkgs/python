@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.18
-Release:        142
+Release:        143
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -40,6 +40,7 @@ BuildRequires:  netbase
 BuildRequires:  tk-dev
 BuildRequires:  tcl-dev
 BuildRequires:  pkgconfig(x11)
+BuildRequires:  pkgconfig(libnsl)
 Requires: python-core
 Requires: python-lib
 Requires: clr-python-timestamp
