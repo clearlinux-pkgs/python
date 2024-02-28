@@ -1,6 +1,6 @@
 Name:           python
 Version:        2.7.18
-Release:        148
+Release:        149
 License:        Python-2.0
 Summary:        The Python Programming Language
 Url:            http://www.python.org
@@ -45,7 +45,6 @@ Requires: python-core
 Requires: python-lib
 Requires: clr-python-timestamp
 Requires: openblas
-Requires: usrbinpython
 
 
 %define python_configure_flags --with-threads --with-pymalloc --without-cxx-main  --with-signal-module --enable-ipv6=yes  ac_cv_header_bluetooth_bluetooth_h=no  ac_cv_header_bluetooth_h=no --with-system-expat  --with-system-ffi  --libdir=/usr/lib --with-computed-gotos --with-lto  --enable-unicode=ucs4
@@ -67,8 +66,6 @@ Summary:        The Python Programming Language
 Group:          devel/python
 Provides:       python
 Provides:       python-modules
-Provides:       /bin/python
-Requires:       usrbinpython
 
 %description core
 The Python Programming Language.
